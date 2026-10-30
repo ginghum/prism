@@ -1,0 +1,97 @@
+
+        
+
+        body {
+            font-family: 'Kosugi Maru', sans-serif;
+            background-color: #0f172a; 
+            color: #f8fafc; 
+            overflow: hidden;
+        }
+
+        .idol-card {
+            transition: transform 0.2s, box-shadow 0.2s;
+            user-select: none;
+        }
+        .idol-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px -5px rgba(255, 255, 255, 0.1), 0 8px 10px -6px rgba(255, 255, 255, 0.1);
+        }
+        .idol-card:active {
+            transform: scale(0.98);
+        }
+
+        .money-float {
+            position: absolute;
+            font-weight: bold;
+            pointer-events: none;
+            animation: floatUp 1s ease-out forwards;
+            z-index: 50;
+            text-shadow: 0px 0px 3px rgba(0,0,0,0.8);
+        }
+
+        @keyframes floatUp {
+            0% { transform: translateY(0) scale(1); opacity: 1; }
+            100% { transform: translateY(-50px) scale(1.3); opacity: 0; }
+        }
+
+        /* カスタムスクロールバー */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b; 
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569; 
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b; 
+        }
+        
+        .tab-btn.active {
+            background-color: #4f46e5; 
+            color: white;
+            border-bottom: 2px solid #818cf8;
+        }
+
+        /* アイテム使用時のオーバーレイアニメーション */
+        .item-cursor-mode {
+            cursor: crosshair !important;
+        }
+        .item-cursor-mode .idol-card {
+            animation: pulse-border 1.5s infinite;
+            border: 2px dashed #ec4899;
+        }
+        .item-cursor-mode .idol-card::after {
+            content: "アイテムを使う";
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: rgba(236, 72, 153, 0.95);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 999px;
+            font-weight: bold;
+            font-size: 1.2rem;
+            opacity: 0;
+            transition: opacity 0.2s;
+            pointer-events: none;
+            z-index: 20;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.5);
+        }
+        .item-cursor-mode .idol-card:hover::after {
+            opacity: 1;
+        }
+        @keyframes pulse-border {
+            0% { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0.7); }
+            70% { box-shadow: 0 0 0 10px rgba(236, 72, 153, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(236, 72, 153, 0); }
+        }
+
+        /* ゲージアニメーション */
+        .progress-bar-fill {
+            transition: width 0.1s linear;
+        }
+    
