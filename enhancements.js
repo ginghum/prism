@@ -1,7 +1,9 @@
 'use strict';
 let selectedId='ageha',previousFocus=null,lastUIUpdate=0,cheerLock=0,hiddenAt=0;
 const SAVE_KEY='prism-producer-v1';
+const RESET_BACKUP_KEY=SAVE_KEY+'-before-reset';
 const defaults=new Map(idols.map(i=>[i.id,{baseIncome:i.baseIncome,stats:{...i.stats}}]));
+const freshGameState=snapshot();
 const colorLabels={ageha:'PINK / LEADER',queen:'GREEN / SUB LEADER',hotaru:'YELLOW',maimai:'LIME',hataori:'ORANGE',nanaho:'RED',dragon:'LIGHT BLUE',ichiru:'BLUE',iehime:'PURPLE',sickle:'BLACK',mimino:'WHITE'};
 function toast(text){const el=document.getElementById('toast');el.textContent=text;el.classList.add('visible');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('visible'),3500)}
 function snapshot(){return {version:1,savedAt:hiddenAt||Date.now(),money,gameStats:{...gameStats},inventory:{...inventory},autoItemMode,selectedId,idols:idols.map(i=>({id:i.id,level:i.level,stats:{...i.stats}})),goods:goods.map(g=>({id:g.id,stock:g.stock,sellTimer:g.sellTimer,autoBuy:g.autoBuy}))}}
@@ -14,10 +16,26 @@ function loadGame(){try{const raw=localStorage.getItem(SAVE_KEY);if(raw)applySav
 function exportSave(){const blob=new Blob([JSON.stringify(snapshot(),null,2)],{type:'application/json'});const a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download='PRISM-save-'+new Date().toISOString().slice(0,10)+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000);toast('セーブデータを書き出しました')}
 async function importSave(input){const file=input.files[0];input.value='';if(!file)return;try{if(file.size>200000)throw Error('size');const s=validateSave(JSON.parse(await file.text()));if(!confirm('現在の進行状況を、選んだセーブデータで置き換えますか？'))return;applySave(s);renderIdols();renderGoods();renderItems();updateTeamStats();updateUI();document.getElementById('auto-item-toggle').checked=autoItemMode;selectSpotlight(selectedId);saveGame();toast('セーブデータを読み込みました')}catch(e){toast('PRISMの有効なセーブデータを選んでください')}}
 function selectSpotlight(id){const i=idols.find(i=>i.id===id);if(!i)return;selectedId=id;const img=document.getElementById('spotlight-art');img.src='assets/'+id+'.webp';img.alt=i.name;document.getElementById('spotlight-name').textContent=i.name;document.getElementById('spotlight-caption').textContent=colorLabels[id]}
-function cheer(){const now=performance.now();if(now-cheerLock<180)return;cheerLock=now;const reward=Math.max(100,Math.floor(idols.reduce((n,i)=>n+i.currentIncome,0)*.6));money+=reward;gameStats.totalMoneyEarned+=reward;createFloatText(document.querySelector('.spotlight-actions'),'+¥'+formatMoney(reward),'#ecccf8');updateUI();updateDashboard()}
-function updateDashboard(){document.getElementById('fever-label').textContent=feverActive?'フィーバー中！ '+idols.find(i=>i.id===activeFeverEffect).name:'次のフィーバー';document.getElementById('fever-countdown').textContent=Math.ceil(feverActive?feverDuration:120-feverTimer)+'秒';document.getElementById('fever-progress').style.width=(feverActive?feverDuration/30*100:feverTimer/120*100)+'%';document.getElementById('cheer-value').textContent='+¥'+formatMoney(Math.max(100,idols.reduce((n,i)=>n+i.currentIncome,0)*.6))}
+function cheer(){const now=performance.now();if(now-cheerLock<500)return;cheerLock=now;const reward=getCheerReward();money+=reward;gameStats.totalMoneyEarned+=reward;createFloatText(document.querySelector('.spotlight-actions'),'+¥'+formatMoney(reward),'#ecccf8');updateUI();updateDashboard()}
+function updateDashboard(){document.getElementById('fever-label').textContent=feverActive?'フィーバー中！ '+idols.find(i=>i.id===activeFeverEffect).name:'次のフィーバー';document.getElementById('fever-countdown').textContent=Math.ceil(feverActive?feverDuration:120-feverTimer)+'秒';document.getElementById('fever-progress').style.width=(feverActive?feverDuration/30*100:feverTimer/120*100)+'%';document.getElementById('cheer-value').textContent='+¥'+formatMoney(getCheerReward())}
 function initDashboard(){document.getElementById('auto-item-toggle').checked=autoItemMode;selectSpotlight(selectedId);document.getElementById('member-search').addEventListener('input',e=>{const q=e.target.value.trim().toLowerCase();let count=0;idols.forEach(i=>{const visible=(i.name+i.fullName+i.id).toLowerCase().includes(q);document.getElementById('card-'+i.id).classList.toggle('filtered-out',!visible);if(visible)count++});document.getElementById('search-empty')?.remove();if(!count)document.getElementById('idol-list').insertAdjacentHTML('beforeend','<p id="search-empty" class="roster-empty">メンバーが見つかりませんでした</p>')});document.getElementById('goods-tab').insertAdjacentHTML('afterbegin','<p class="help-note">仕入れたグッズは自動で販売されます。<br>「自動入荷」をオンにすると、資金の範囲で補充します。</p>');document.getElementById('idols-container').insertAdjacentHTML('beforeend','<p class="game-footer">PRISM / 11 colors, one stage.<br>進行状況はこのブラウザに自動保存されます。別の端末には「書き出し」で引き継げます。放置収益はライブ収益のみ、最大8時間です。</p>');updateDashboard();setInterval(saveGame,10000);}
 document.addEventListener('visibilitychange',()=>{if(document.hidden){hiddenAt=Date.now();saveGame()}else{if(hiddenAt){if(feverActive)endFever();awardOffline((Date.now()-hiddenAt)/1000);hiddenAt=0}lastTick=performance.now()}});
 window.addEventListener('pagehide',()=>saveGame());
 document.addEventListener('keydown',e=>{const modal=document.getElementById('profile-modal');if(e.key==='Escape'){closeProfile();cancelItemUse();closeMessage()}if(e.key==='Tab'&&!modal.classList.contains('hidden')){const els=[...modal.querySelectorAll('button,a,input,[tabindex="0"]')];const first=els[0],last=els[els.length-1];if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus()}else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus()}}});
 document.getElementById('profile-modal').addEventListener('click',e=>{if(e.target.id==='profile-modal')closeProfile()});
+
+function getCheerReward(){return Math.max(10,Math.floor(idols.reduce((n,i)=>n+defaults.get(i.id).baseIncome*Math.pow(1.07,i.level-1)*(i.hasMemorial?2:1)*(1+i.stats.vocal*.08+(i.stats.dance+i.stats.talk+i.stats.visual)*.005),0)*.18))}
+function refreshGameView(){cancelItemUse();closeProfile();closeMessage();['fever-cutin','lvl30-overlay','lvl50-overlay'].forEach(id=>document.getElementById(id).classList.add('hidden'));renderIdols();renderGoods();renderItems();updateTeamStats();updateUI();updateDashboard();document.getElementById('auto-item-toggle').checked=autoItemMode;document.getElementById('member-search').value='';document.getElementById('search-empty')?.remove();selectSpotlight(selectedId);switchTab('goods');}
+function openResetDialog(){document.getElementById('reset-dialog').showModal()}
+function resetGame(){
+    try {localStorage.setItem(RESET_BACKUP_KEY,JSON.stringify(snapshot()))} catch(e){toast('バックアップを保存できないため、リセットを中止しました。先にデータを書き出してください。');return false}
+    document.getElementById('reset-dialog').close();
+    const initial=JSON.parse(JSON.stringify(freshGameState));initial.savedAt=Date.now();
+    hiddenAt=0;cheerLock=0;applySave(initial);refreshGameView();saveGame();
+    document.getElementById('restore-reset').hidden=false;
+    toast('最初からスタートしました。直前のデータは統計タブから復元できます。');return true;
+}
+function restoreBeforeReset(){
+    try {const raw=localStorage.getItem(RESET_BACKUP_KEY);if(!raw)throw Error('missing');const s=validateSave(JSON.parse(raw));if(!confirm('リセット直前の進行状況に戻しますか？ 現在の進行は置き換わります。'))return;hiddenAt=0;applySave(s);refreshGameView();saveGame();toast('リセット直前の進行状況を復元しました')} catch(e){toast('復元できるバックアップがありません')}
+}
+window.addEventListener('load',()=>{try{document.getElementById('restore-reset').hidden=!localStorage.getItem(RESET_BACKUP_KEY)}catch(e){};});

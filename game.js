@@ -100,7 +100,7 @@
                 loveName: "アゲハの愛", hasLove: false,
                 lvl50Quote: "私の全部、あなたにあげる。ずっと一緒にいてね。",
                 desc: "すべての柵を受け止める「聖人」であり、猛獣たちを笑顔にさせる圧倒的なカリスマ。孤児院で育ち、裏社会の大物芸能人である父に引き取られた。過去のステージでメンバーに背中を刺され、日に3時間しか動けない体となるが、父の雪辱を果たすためPRISMを結成した。ドカ食い癖がある。",
-                skillName: "天性のカリスマ", skillDesc: "フィーバー中、チーム全員のライブ収益が【30倍】になる。", skillDescLove: "フィーバー中、チーム全員のライブ収益が【300倍】になる。"
+                skillName: "天性のカリスマ", skillDesc: "フィーバー中、チーム全員のライブ収益が【3倍】になる。", skillDescLove: "フィーバー中、チーム全員のライブ収益が【6倍】になる。"
             },
             {
                 id: 'queen', name: 'クイーン', fullName: '針生 王女（はりう おうじょ）',
@@ -123,7 +123,7 @@
                 loveName: "クイーンの愛", hasLove: false,
                 lvl50Quote: "貴方に私の全てを捧げるわ。……永遠に私の傍にいなさい。",
                 desc: "プライドが高く、自分の価値観を押し付ける厳しいお姉様。アゲハを狂信しており、アゲハの介護を一手に引き受ける。元はNo.2チームのトップでアゲハの熱狂的ファン。アゲハ引退時に絶望し身を投げたが、助けられ彼女を守る女王として生きることを決意した。",
-                skillName: "優美なる支配", skillDesc: "フィーバー中、すべてのグッズの販売価格が【2倍】になる。", skillDescLove: "フィーバー中、すべてのグッズの販売価格が【5倍】になる。"
+                skillName: "優美なる支配", skillDesc: "フィーバー中、すべてのグッズの販売価格が【2倍】になる。", skillDescLove: "フィーバー中、すべてのグッズの販売価格が【3倍】になる。"
             },
             {
                 id: 'hotaru', name: 'ホタル', fullName: '火垂 瑠流（ほたる るる）',
@@ -146,7 +146,7 @@
                 loveName: "ホタルの愛", hasLove: false,
                 lvl50Quote: "計算外です。まさか私が、こんなにもあなたを……。",
                 desc: "どんなときも笑顔を崩さず淡々とロジックで相手を殴り倒す。悪徳弁護士の娘であり、アゲハとは幼馴染（双子のような存在）。いじめられた過去を持ち、いつか圧倒的な力を手に入れるための弾丸（証拠）を握りしめている超現実主義者。",
-                skillName: "完全論破", skillDesc: "フィーバー中、グッズの販売時間が【さらに半減】する。", skillDescLove: "フィーバー中、グッズの販売時間が【ゼロ(瞬時販売)】になる。"
+                skillName: "完全論破", skillDesc: "フィーバー中、グッズの販売時間が【さらに半減】する。", skillDescLove: "フィーバー中、グッズの販売時間が【さらに75%短縮】になる。"
             },
             {
                 id: 'maimai', name: 'マイマイ', fullName: '嵐山 真唯（あらしやま まい）',
@@ -169,7 +169,7 @@
                 loveName: "マイマイの愛", hasLove: false,
                 lvl50Quote: "わたし、お前のことめっちゃ好きだ！ これからもずっと一緒に走ろうな！",
                 desc: "バカで明るく、考えることが大嫌いで走ることで解決しようとする少女。過去に親の転勤で友人に絶交されたトラウマがあり、怪我で入院中にアゲハと出会う。対等な友人として受け入れてくれた彼女を絶対に離さないと誓っている。チームの緩衝材。",
-                skillName: "バカげた体力", skillDesc: "フィーバー中、販売速度・収益・ドロップ率すべてが【1.5倍】のバフ！", skillDescLove: "フィーバー中、販売速度・収益・ドロップ率すべてが【3倍】の超絶バフ！"
+                skillName: "バカげた体力", skillDesc: "フィーバー中、販売速度・収益・ドロップ率すべてが【1.3倍】のバフ！", skillDescLove: "フィーバー中、販売速度・収益・ドロップ率すべてが【2倍】のバフ！"
             },
             {
                 id: 'hataori', name: 'ハタオリ', fullName: '東堂 織香（とうどう おりか）',
@@ -215,7 +215,7 @@
                 loveName: "ナナホの愛", hasLove: false,
                 lvl50Quote: "俺の可愛いお姫様。もう、一生逃がさないからね。",
                 desc: "長身で優しいイケメン風の美少女だが、本質は冷徹なサイコパスで非常に女癖が悪い。昔恋に落ちた都会の少女を探すため上京し、女を抱き潰す荒んだ日々の中でアゲハと出会う。圧倒的なアイドルになれば彼女に見つけてもらえると確信している。",
-                skillName: "底なしの魅力", skillDesc: "発動時、チーム総収益の【1000倍】の投げ銭を獲得！", skillDescLove: "発動時、チーム総収益の【10000倍】の投げ銭を獲得！"
+                skillName: "底なしの魅力", skillDesc: "発動時、通常ライブ収益【45秒分】の投げ銭を獲得！", skillDescLove: "発動時、通常ライブ収益【120秒分】の投げ銭を獲得！"
             },
             {
                 id: 'dragon', name: 'ドラゴン', fullName: '飛野 龍子（ひの たつこ）',
@@ -238,7 +238,7 @@
                 loveName: "ドラゴンの愛", hasLove: false,
                 lvl50Quote: "アタシの魂、お前に預けたぜ。地獄の底までついてきな！",
                 desc: "喧嘩っ早いヤクザの娘。孤独な時代に敗れた半グレのボスを慕っていたが、彼女が牙を抜かれ媚びるアイドルになったことに絶望する。ボスをステージから叩き潰すためカチコミをかけた際、アゲハに出会い「姉貴」として従っている。",
-                skillName: "ヤンキー魂", skillDesc: "フィーバー中、全員の特訓費用が【半額】になる！", skillDescLove: "フィーバー中、全員の特訓費用が【9割引(10%)】になる！"
+                skillName: "ヤンキー魂", skillDesc: "フィーバー中、全員の特訓費用が【30%引き】になる！", skillDescLove: "フィーバー中、全員の特訓費用が【60%引き】になる！"
             },
             {
                 id: 'ichiru', name: 'イチル', fullName: '糸金 一縷（いとかね いちる）',
@@ -261,7 +261,7 @@
                 loveName: "イチルの愛", hasLove: false,
                 lvl50Quote: "わ、私……あなたのことが、だ、大好きですっ……！",
                 desc: "ビビりで小心者だが真面目で責任感が強い。心の中では常に早口大パニック状態。実家の会社が倒産危機に陥った際、アゲハの紹介で救われた。その恩を返すため、恐ろしい猛獣だらけの楽屋で事務兼調停役を務めている。",
-                skillName: "神業の経理", skillDesc: "フィーバー中、グッズの入荷費用が【半額】になる！", skillDescLove: "フィーバー中、グッズの入荷費用が【無料(0円)】になる！"
+                skillName: "神業の経理", skillDesc: "フィーバー中、グッズの入荷費用が【20%引き】になる！", skillDescLove: "フィーバー中、グッズの入荷費用が【40%引き】になる！"
             },
             {
                 id: 'iehime', name: 'イエヒメ', fullName: '亜里園 葦江（ありその いえ）',
@@ -284,7 +284,7 @@
                 loveName: "イエヒメの愛", hasLove: false,
                 lvl50Quote: "ふん、特別に私の愛をあげるわ。一生感謝しなさい！",
                 desc: "体は小さいが非常に我が強く傲慢なツンデレ。姉に憧れ10年血の滲む努力をしたが成果が出ず絶望していた所、アゲハに見出され救われた。裏では誰よりも努力家。お姉ちゃんが1番で自分が2番、アゲハは世界で3番目に凄い人。",
-                skillName: "努力の結晶", skillDesc: "フィーバー中、イエヒメ自身のライブ収益が【200倍】に跳ね上がる！", skillDescLove: "フィーバー中、イエヒメ自身のライブ収益が【2000倍】に跳ね上がる！"
+                skillName: "努力の結晶", skillDesc: "フィーバー中、イエヒメ自身のライブ収益が【15倍】に跳ね上がる！", skillDescLove: "フィーバー中、イエヒメ自身のライブ収益が【35倍】に跳ね上がる！"
             },
             {
                 id: 'sickle', name: 'シックル', fullName: '不明',
@@ -307,7 +307,7 @@
                 loveName: "シックルの愛", hasLove: false,
                 lvl50Quote: "……あなた。わたしの、大事な人。ずっと、そばにいて。",
                 desc: "記憶喪失の無口な少女。周囲を完全に拒絶しているが、アゲハ（とマイマイ・イチル）には懐いている。歌うときだけ生き生きとした表情を見せる。過去のメロディを教えてくれた大事な人に再会する日を夢見ている。",
-                skillName: "魂のメロディ", skillDesc: "フィーバー中、アイテムドロップ率が【確定(100%)】になる！", skillDescLove: "フィーバー中、アイテムドロップ率が【確定(100%)】になり、獲得数が【3倍】になる！"
+                skillName: "魂のメロディ", skillDesc: "フィーバー中、アイテムドロップ率が【確定(100%)】になる！", skillDescLove: "フィーバー中、アイテムドロップ率が【確定(100%)】になり、獲得数が【2倍】になる！"
             },
             {
                 id: 'mimino', name: 'ミミノ', fullName: '雲居 巳実（くもい みみの）',
@@ -330,7 +330,7 @@
                 loveName: "ミミノの愛", hasLove: false,
                 lvl50Quote: "わ、私なんかを愛してくれるなんて……絶対、離れませんからね……！",
                 desc: "気弱で卑屈だが、無意識に周囲を煽って自爆させる天才。生まれた時から天災級の不運体質で人生の殆どを入院して過ごした。絶望の中アゲハに救われ、不幸を儚い魅力へと昇華させPRISMに辿り着いた。いじめもノーダメージ。",
-                skillName: "不運の反動", skillDesc: "発動時、☆1〜☆3の全アイテムを【3個ずつ】獲得する！", skillDescLove: "発動時、☆1〜☆3の全アイテムを【30個ずつ】獲得する！"
+                skillName: "不運の反動", skillDesc: "発動時、ランダムな育成アイテムを【3個】獲得する！", skillDescLove: "発動時、ランダムな育成アイテムを【8個】獲得する！"
             }
         ];
 
@@ -348,9 +348,14 @@
             { id: 'panel', name: '等身大パネル', cost: 100000, sellPrice: 300000, stock: 0, baseTimeMax: 600, sellTimer: 0, emoji: '🧍', dropRate: 0.60, autoBuy: false },
             { id: 'dinner', name: 'シークレットディナーショー', cost: 500000, sellPrice: 1500000, stock: 0, baseTimeMax: 1200, sellTimer: 0, emoji: '🍽️', dropRate: 0.80, autoBuy: false },
             // Premium Goods
-            { id: 'p_badge', name: 'プレミアム 缶バッジ', cost: 2000000, sellPrice: 8000000, stock: 0, baseTimeMax: 1800, sellTimer: 0, emoji: '✨', dropRate: 1.0, autoBuy: false },
-            { id: 'p_penlight', name: 'プレミアム ペンライト', cost: 10000000, sellPrice: 50000000, stock: 0, baseTimeMax: 3600, sellTimer: 0, emoji: '✨', dropRate: 1.5, autoBuy: false }
+            { id: 'p_badge', name: 'プレミアム 缶バッジ', cost: 2000000, sellPrice: 8000000, stock: 0, baseTimeMax: 1800, sellTimer: 0, emoji: '✨', dropRate: 0.55, autoBuy: false },
+            { id: 'p_penlight', name: 'プレミアム ペンライト', cost: 10000000, sellPrice: 50000000, stock: 0, baseTimeMax: 3600, sellTimer: 0, emoji: '✨', dropRate: 0.65, autoBuy: false }
         ];
+
+        // Saturating team bonuses prevent runaway income while keeping every stat useful.
+        function getDanceReduction(){return 0.8*teamStats.dance/(teamStats.dance+300)}
+        function getVisualBonus(){return 3*teamStats.visual/(teamStats.visual+500)}
+        function getTalkBonus(){return 0.25*teamStats.talk/(teamStats.talk+300)}
 
         function updateTeamStats() {
             idols.forEach(recalcIdolStats);
@@ -358,9 +363,9 @@
             teamStats.visual = idols.reduce((sum, idol) => sum + idol.stats.visual, 0);
             teamStats.talk = idols.reduce((sum, idol) => sum + idol.stats.talk, 0);
             
-            document.getElementById('team-dance-eff').textContent = `-${Math.min(99, (teamStats.dance * 0.1).toFixed(1))}% 時間`;
-            document.getElementById('team-vis-eff').textContent = `+${teamStats.visual}% 価格`;
-            document.getElementById('team-talk-eff').textContent = `+${(teamStats.talk * 0.1).toFixed(1)}% ドロップ率`;
+            document.getElementById('team-dance-eff').textContent = `-${(getDanceReduction()*100).toFixed(1)}% 時間`;
+            document.getElementById('team-vis-eff').textContent = `+${(getVisualBonus()*100).toFixed(1)}% 価格`;
+            document.getElementById('team-talk-eff').textContent = `+${(getTalkBonus()*100).toFixed(1)}% ドロップ率`;
         }
 
         function calculateUpgradeCost(idol, addLevels) {
@@ -368,14 +373,14 @@
             let feverDiscount = 1.0;
             if (feverActive && activeFeverEffect === 'dragon') {
                 const dragon = idols.find(i => i.id === 'dragon');
-                feverDiscount = dragon.hasLove ? 0.1 : 0.5; // 愛があれば9割引
+                feverDiscount = dragon.hasLove ? 0.4 : 0.7; // 覚醒で60%割引
             }
-            // スタミナ割引限界突破 (最大99%割引まで)
-            let discount = Math.pow(0.98, idol.stats.stamina) * feverDiscount;
-            discount = Math.max(0.01, discount); 
+            // スタミナ割引は最大60%、フィーバーとは乗算
+            let discount = Math.max(0.4, 1 / (1 + idol.stats.stamina * 0.01)) * feverDiscount;
+            discount = Math.max(0.16, discount); 
 
             for(let i = 0; i < addLevels; i++) {
-                let rawCost = idol.baseUpgradeCost * Math.pow(1.5, (idol.level + i) - 1);
+                let rawCost = idol.baseUpgradeCost * Math.pow(1.16, (idol.level + i) - 1);
                 totalCost += Math.floor(rawCost * discount);
             }
             return totalCost;
@@ -383,12 +388,12 @@
 
         function recalcIdolStats(idol) {
             // 歌唱力ボーナスを0.1から0.2へ倍増
-            const statMulti = (idol.stats.vocal * 0.2) + ((idol.stats.dance + idol.stats.talk + idol.stats.visual) * 0.01);
+            const statMulti = (idol.stats.vocal * 0.08) + ((idol.stats.dance + idol.stats.talk + idol.stats.visual) * 0.005);
             let base = idol.baseIncome;
             if (feverActive && activeFeverEffect === 'iehime' && idol.id === 'iehime') {
-                base *= idol.hasLove ? 2000 : 200; // 愛があれば2000倍
+                base *= idol.hasLove ? 35 : 15; // 単体の収益を強化
             }
-            idol.currentIncome = base * (1 + statMulti);
+            idol.currentIncome = base * Math.pow(1.07, idol.level - 1) * (1 + statMulti);
             
             idol.upgradeCost = calculateUpgradeCost(idol, 1);
             idol.upgradeCost5 = calculateUpgradeCost(idol, 5);
@@ -716,7 +721,7 @@
             let ichiruCostMulti = 1;
             if (feverActive && activeFeverEffect === 'ichiru') {
                 const ichiru = idols.find(i => i.id === 'ichiru');
-                ichiruCostMulti = ichiru.hasLove ? 0 : 0.5;
+                ichiruCostMulti = ichiru.hasLove ? 0.6 : 0.8;
             }
             const currentCost = item.cost * ichiruCostMulti;
             const totalCost = currentCost * amount;
@@ -789,21 +794,24 @@
             // 即時発動スキルの処理
             if (idol.id === 'nanaho') {
                 const totalIncome = idols.reduce((s, i) => s + i.currentIncome, 0);
-                const multi = idol.hasLove ? 10000 : 1000;
+                const multi = idol.hasLove ? 120 : 45;
                 const bonus = totalIncome * multi;
                 money += bonus;
                 gameStats.totalMoneyEarned += bonus;
             } else if (idol.id === 'mimino') {
-                const amt = idol.hasLove ? 30 : 3;
-                Object.keys(inventory).forEach(k => {
-                    inventory[k] += amt;
-                    gameStats.totalItemsDropped += amt;
-                });
+                const amt = idol.hasLove ? 8 : 3;
+                for(let n=0;n<amt;n++) {
+                    const types=['vocal','dance','talk','visual','stamina'];
+                    const roll=Math.random();
+                    const rank=roll<0.01?3:roll<0.15?2:1;
+                    const key=types[Math.floor(Math.random()*types.length)]+'_'+rank;
+                    inventory[key]++; gameStats.totalItemsDropped++;
+                }
                 renderItems();
                 if(autoItemMode) consumeAllItemsAuto();
             } else if (idol.id === 'hataori') {
                 let hataoriBonus = 0;
-                const visualBonus = teamStats.visual * 0.01;
+                const visualBonus = getVisualBonus();
                 let soldCount = 0;
                 const maxSell = idol.hasLove ? 50 : 15;
                 
@@ -895,8 +903,8 @@
                 
                 // Fever Income Modifiers
                 if (feverActive) {
-                    if (activeFeverEffect === 'maimai') currentIncome *= (isLove ? 3 : 1.5);
-                    if (activeFeverEffect === 'ageha') currentIncome *= (isLove ? 300 : 30);
+                    if (activeFeverEffect === 'maimai') currentIncome *= (isLove ? 2 : 1.3);
+                    if (activeFeverEffect === 'ageha') currentIncome *= (isLove ? 6 : 3);
                 }
                 
                 totalIncomePerSec += currentIncome;
@@ -926,9 +934,9 @@
             moneyPerSecEl.textContent = `ライブ収益: ¥${formatMoney(totalIncomePerSec)}/s`;
 
             // Goods UI Update
-            const visualBonus = teamStats.visual * 0.01;
-            let queenMulti = (feverActive && activeFeverEffect === 'queen') ? (isLove ? 5 : 2) : 1;
-            let ichiruCostMulti = (feverActive && activeFeverEffect === 'ichiru') ? (isLove ? 0 : 0.5) : 1;
+            const visualBonus = getVisualBonus();
+            let queenMulti = (feverActive && activeFeverEffect === 'queen') ? (isLove ? 3 : 2) : 1;
+            let ichiruCostMulti = (feverActive && activeFeverEffect === 'ichiru') ? (isLove ? 0.6 : 0.8) : 1;
 
             goods.forEach(item => {
                 document.getElementById(`stock-${item.id}`).textContent = item.stock;
@@ -982,8 +990,8 @@
             const isLove = activeIdol ? activeIdol.hasLove : false;
 
             let incomeThisTick = 0;
-            const globalIncomeMulti = (feverActive && activeFeverEffect === 'maimai') ? (isLove ? 3 : 1.5) : 1;
-            const agehaMulti = (feverActive && activeFeverEffect === 'ageha') ? (isLove ? 300 : 30) : 1;
+            const globalIncomeMulti = (feverActive && activeFeverEffect === 'maimai') ? (isLove ? 2 : 1.3) : 1;
+            const agehaMulti = (feverActive && activeFeverEffect === 'ageha') ? (isLove ? 6 : 3) : 1;
             
             idols.forEach(idol => {
                 let tickIncome = idol.currentIncome * globalIncomeMulti * agehaMulti;
@@ -995,21 +1003,20 @@
             money += incomeThisTick;
             gameStats.totalMoneyEarned += incomeThisTick;
 
-            let timeReduction = Math.min(0.99, teamStats.dance * 0.001);
+            let timeReduction = getDanceReduction();
             if (feverActive && activeFeverEffect === 'hotaru') {
-                if (isLove) timeReduction = 1.0;
-                else timeReduction += (1 - timeReduction) * 0.5;
+                timeReduction += (1 - timeReduction) * (isLove ? 0.75 : 0.5);
             }
             
-            const visualBonus = teamStats.visual * 0.01;
-            const queenMulti = (feverActive && activeFeverEffect === 'queen') ? (isLove ? 5 : 2) : 1;
-            let talkBonus = teamStats.talk * 0.001;
-            if(feverActive && activeFeverEffect === 'maimai') talkBonus *= isLove ? 3 : 1.5;
-            let ichiruCostMulti = (feverActive && activeFeverEffect === 'ichiru') ? (isLove ? 0 : 0.5) : 1;
+            const visualBonus = getVisualBonus();
+            const queenMulti = (feverActive && activeFeverEffect === 'queen') ? (isLove ? 3 : 2) : 1;
+            let talkBonus = getTalkBonus();
+            if(feverActive && activeFeverEffect === 'maimai') talkBonus *= isLove ? 2 : 1.3;
+            let ichiruCostMulti = (feverActive && activeFeverEffect === 'ichiru') ? (isLove ? 0.6 : 0.8) : 1;
 
             goods.forEach(item => {
                 // 自動入荷ロジック
-                if (item.autoBuy && currentTime - (item.lastAutoBuy || 0) >= 250) {
+                if (item.autoBuy && currentTime - (item.lastAutoBuy || 0) >= 500) {
                     item.lastAutoBuy = currentTime;
                     const currentCost = item.cost * ichiruCostMulti;
                     if (item.stock < 10 && money >= currentCost) {
@@ -1019,10 +1026,10 @@
                 }
 
                 if (item.stock > 0) {
-                    const speedMulti = (feverActive && activeFeverEffect === 'maimai') ? (isLove ? 3 : 1.5) : 1;
+                    const speedMulti = (feverActive && activeFeverEffect === 'maimai') ? (isLove ? 2 : 1.3) : 1;
                     item.sellTimer += deltaTime * speedMulti;
                     
-                    const actualTimeMax = Math.max(0.1, item.baseTimeMax * (1 - timeReduction));
+                    const actualTimeMax = Math.max(0.5, item.baseTimeMax * (1 - timeReduction));
                     
                     const progressEl = document.getElementById(`progress-${item.id}`);
                     if(progressEl) {
@@ -1038,11 +1045,11 @@
                         gameStats.totalGoodsSold++;
                         item.sellTimer = 0; 
                         
-                        let finalDropRate = item.dropRate + talkBonus;
+                        let finalDropRate = Math.min(0.95, item.dropRate + talkBonus);
                         let dropCount = 1;
                         if(feverActive && activeFeverEffect === 'sickle') {
                             finalDropRate = 1.0; 
-                            if(isLove) dropCount = 3;
+                            if(isLove) dropCount = 2;
                         }
 
                         if (Math.random() < finalDropRate) {
