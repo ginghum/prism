@@ -1,0 +1,156 @@
+<!doctype html><html lang="ja"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101323"><meta name="description" content="11人のアイドルを育成して最高のステージへ。PRISMの放置型アイドルマネジメントゲーム。"><title>PRISM — 11色の個性を、最高のステージへ。</title><link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/utilities.css"><link rel="stylesheet" href="assets/prism.css"></head><body><header class="app-header"><a class="brand" href="./"><span class="brand-mark">◇</span><span>PRISM<small>IDOL MANAGEMENT</small></span></a><div class="header-badge"><span class="live-dot"></span> PRODUCER'S ROOM</div><div class="save-tools"><span id="save-status" role="status">自動保存</span><button onclick="saveGame(true)" title="進行状況を保存">保存</button><button onclick="exportSave()">書き出し</button><button onclick="document.getElementById('import-save').click()">読み込み</button><input type="file" id="import-save" accept="application/json,.json" hidden onchange="importSave(this)"></div></header>
+<div class="summary-bar"><div class="balance"><small>チーム資金</small><strong>¥<span id="total-money">0</span></strong><span id="money-per-sec">ライブ収益: ¥0/s</span></div><div class="team-effects"><div><small>💃 販売速度</small><b id="team-dance-eff">−0%</b></div><div><small>✧ グッズ価値</small><b id="team-vis-eff">+0%</b></div><div><small>♬ ドロップ率</small><b id="team-talk-eff">+0%</b></div></div></div>    <!-- フィーバーカットイン用オーバーレイ -->
+    <div id="fever-cutin" class="hidden fixed inset-0 z-40 flex items-center justify-center bg-black/60 backdrop-blur-sm transition-opacity duration-300">
+        <div class="w-full bg-gradient-to-r from-transparent via-current to-transparent py-6 transform -skew-y-3 flex flex-col items-center justify-center shadow-[0_0_50px_rgba(255,255,255,0.2)] transition-transform duration-500 scale-y-0" id="fever-cutin-box">
+            <p class="text-4xl md:text-6xl font-black text-white italic drop-shadow-lg tracking-widest mb-2" id="fever-cutin-name">名前</p>
+            <p class="text-xl md:text-2xl font-bold text-white drop-shadow-md mb-2" id="fever-cutin-quote">「セリフ」</p>
+            <p class="text-sm md:text-base font-bold bg-black/50 text-white px-4 py-1 rounded-full" id="fever-cutin-desc">スキル効果</p>
+        </div>
+    </div>
+
+    <!-- レベル30演出用オーバーレイ -->
+    <div id="lvl30-overlay" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-pink-900/90 backdrop-blur-sm transition-opacity duration-500">
+        <div class="text-center transform scale-0 transition-transform duration-500" id="lvl30-content">
+            <p class="text-2xl md:text-4xl text-pink-300 font-bold mb-4 tracking-widest">💐 BINDING TIES 💐</p>
+            <div id="lvl30-icon" class="w-24 h-24 md:w-32 md:h-32 mx-auto mb-4 animate-bounce bg-white/20 rounded-full p-4 backdrop-blur shadow-[0_0_30px_rgba(255,255,255,0.5)]"></div>
+            <h2 id="lvl30-text" class="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-pink-200 via-rose-300 to-red-200 drop-shadow-lg mb-4"></h2>
+            <p id="lvl30-quote" class="text-white text-lg md:text-xl font-bold mb-6 italic max-w-xl mx-auto px-4"></p>
+            <div class="bg-white/20 p-4 md:p-6 rounded-xl border border-white/50 backdrop-blur inline-block shadow-xl">
+                <p class="text-pink-100 text-sm md:text-lg mb-1 font-bold">特別な記念品を獲得</p>
+                <p id="lvl30-memorial-name" class="text-xl md:text-3xl font-extrabold text-white my-2"></p>
+                <p class="text-pink-200 text-xs md:text-sm mt-2 font-bold bg-black/30 py-1 px-3 rounded-full">（基本収益力が永続で2倍！）</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- レベル50演出用オーバーレイ -->
+    <div id="lvl50-overlay" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-red-900/90 backdrop-blur-sm transition-opacity duration-500">
+        <div class="text-center transform scale-0 transition-transform duration-500" id="lvl50-content">
+            <p class="text-2xl md:text-4xl text-red-300 font-bold mb-4 tracking-widest">💖 TRUE LOVE 💖</p>
+            <div id="lvl50-icon" class="w-24 h-24 md:w-32 md:h-32 mx-auto mb-4 animate-bounce bg-white/20 rounded-full p-4 backdrop-blur shadow-[0_0_30px_rgba(255,255,255,0.5)]"></div>
+            <h2 id="lvl50-text" class="text-3xl md:text-5xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-red-200 via-rose-400 to-red-200 drop-shadow-lg mb-4"></h2>
+            <p id="lvl50-quote" class="text-white text-lg md:text-xl font-bold mb-6 italic max-w-xl mx-auto px-4"></p>
+            <div class="bg-white/20 p-4 md:p-6 rounded-xl border border-white/50 backdrop-blur inline-block shadow-xl">
+                <p class="text-red-100 text-sm md:text-lg mb-1 font-bold">究極の証を獲得</p>
+                <p id="lvl50-love-name" class="text-xl md:text-3xl font-extrabold text-white my-2"></p>
+                <p class="text-red-200 text-xs md:text-sm mt-2 font-bold bg-black/40 py-1 px-3 rounded-full">（固有スキルが超絶強化！）</p>
+            </div>
+        </div>
+    </div>
+
+    <!-- アイテム使用時のオーバーレイ警告 -->
+    <div id="item-use-overlay" class="hidden absolute top-0 left-0 w-full h-full bg-pink-900/40 z-10 flex flex-col items-center justify-start pt-16 pointer-events-none transition-opacity">
+        <div class="bg-slate-800 p-4 rounded-xl shadow-2xl border-2 border-pink-500 flex flex-col items-center pointer-events-auto transform transition-transform hover:scale-105 max-w-[90%] md:max-w-md">
+            <p class="font-extrabold text-lg text-pink-400 mb-1">🎁 アイテム使用モード</p>
+            <p class="font-bold text-slate-300 text-xs md:text-sm mb-1 text-center">強化したいメンバーをクリックしてください！</p>
+            <p class="text-sm md:text-base font-bold text-white mb-3 bg-slate-900 px-3 py-1.5 rounded-lg text-center" id="using-item-desc">使用アイテム: --</p>
+            <button onclick="cancelItemUse()" class="px-5 py-2 bg-slate-600 hover:bg-slate-500 text-white rounded-lg text-xs md:text-sm font-bold transition-colors shadow-lg">やめる (キャンセル)</button>
+        </div>
+    </div>
+
+    <!-- プロフィールモーダル -->
+    <div id="profile-modal" class="hidden fixed inset-0 z-50 flex items-center justify-center bg-black/80 backdrop-blur-sm p-4">
+        <div id="profile-modal-content" class="bg-slate-900 text-slate-100 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto shadow-2xl relative border-2 border-transparent transition-colors duration-300">
+            <button onclick="closeProfile()" class="absolute top-4 right-4 text-slate-400 hover:text-red-500 bg-slate-800 rounded-full p-2 transition-colors z-10 border border-slate-700">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+            </button>
+            <div class="p-6 md:p-8">
+                <div class="flex items-center mb-6" id="profile-header">
+                    <!-- Icon and Name injected here -->
+                </div>
+                <div class="space-y-6" id="profile-content">
+                    <!-- Profile details injected here -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="flex-1 flex flex-col md:flex-row overflow-hidden relative" id="main-area">
+        <main class="flex-1 p-4 md:p-6 overflow-y-auto bg-slate-900" id="idols-container">
+            <section class="spotlight" aria-label="ピックアップメンバー"><div class="spotlight-copy"><span class="eyebrow">ELEVEN COLORS. ONE STAGE.</span><h2>11色の個性を、<br>最高のステージへ。</h2><p>メンバーを育てて、グッズを届けて。<br>あなたとつくる、PRISMの毎日。</p><div class="spotlight-actions"><button class="primary-action" onclick="cheer()">✦ ライブを応援 <span id="cheer-value">+¥100</span></button><button class="text-action" onclick="showProfile(selectedId)">メンバーを知る ↗</button></div><div class="spotlight-label"><span id="spotlight-name">アゲハ</span><small id="spotlight-caption">PINK / LEADER</small></div></div><div class="spotlight-visual"><div class="prism-orbit"></div><img id="spotlight-art" src="assets/ageha.webp" alt="アゲハ" width="720" height="1080"></div></section>
+            <div class="fever-panel"><div><span class="live-dot"></span><strong id="fever-label">次のフィーバー</strong><span id="fever-countdown">120秒</span></div><div class="fever-track"><div id="fever-progress"></div></div><small>2分ごとに、メンバーの固有スキルが発動</small></div>
+            <div class="roster-heading"><div><span class="eyebrow">YOUR MEMBERS</span><h2>メンバー <small>11</small></h2></div><label class="search-box">⌕ <input id="member-search" placeholder="メンバーを探す" type="search" aria-label="メンバーを探す"></label></div><p class="section-hint">立ち絵をタップで会話 · ↗でプロフィール · 特訓でレベルアップ</p>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6" id="idol-list">
+                <!-- Idols will be injected here by JS -->
+            </div>
+        </main>
+
+        <aside class="w-full md:w-96 bg-slate-800 shadow-[-4px_0_15px_rgba(0,0,0,0.5)] flex flex-col z-10 border-l border-slate-700 relative shrink-0 h-64 md:h-auto">
+            <div class="flex border-b border-slate-700 text-sm md:text-base">
+                <button class="flex-1 py-3 font-bold text-slate-300 hover:bg-slate-700 tab-btn active transition-colors" onclick="switchTab('goods')">グッズ</button>
+                <button class="flex-1 py-3 font-bold text-slate-300 hover:bg-slate-700 tab-btn transition-colors relative" onclick="switchTab('items')">
+                    育成アイテム <span id="item-badge" class="hidden absolute top-2 right-4 w-2 h-2 bg-red-500 rounded-full"></span>
+                </button>
+                <button class="flex-1 py-3 font-bold text-slate-300 hover:bg-slate-700 tab-btn transition-colors" onclick="switchTab('stats')">統計</button>
+            </div>
+
+            <!-- Goods Tab -->
+            <div id="goods-tab" class="flex-1 p-4 overflow-y-auto bg-slate-800">
+                <div id="goods-list" class="space-y-3">
+                    <!-- Goods will be injected here -->
+                </div>
+            </div>
+
+            <!-- Items Tab -->
+            <div id="items-tab" class="flex-1 p-4 overflow-y-auto hidden bg-slate-800">
+                <div class="flex items-center justify-between mb-2 bg-slate-700 p-3 rounded-lg border border-slate-600 shadow-sm">
+                    <div class="text-sm font-bold text-indigo-300">🔄 アイテム自動使用</div>
+                    <label class="relative inline-flex items-center cursor-pointer">
+                        <input type="checkbox" id="auto-item-toggle" class="sr-only peer" onchange="toggleAutoItem()">
+                        <div class="w-11 h-6 bg-slate-900 peer-focus:outline-none rounded-full peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-gray-300 after:border after:rounded-full after:h-5 after:w-5 after:transition-all peer-checked:bg-indigo-500"></div>
+                    </label>
+                </div>
+                <p class="text-[10px] text-slate-400 mb-4 bg-slate-900 p-2 rounded" id="auto-item-desc">オフ：手動で使用します。<br>オン：入手時にランダムなメンバーに自動使用します。</p>
+                <div id="items-list" class="space-y-2">
+                    <!-- Items will be injected here -->
+                </div>
+            </div>
+
+            <!-- Stats Tab (formerly Log Tab) -->
+            <div id="stats-tab" class="flex-1 p-4 overflow-y-auto hidden bg-slate-800">
+                <h3 class="font-bold mb-4 text-slate-200 border-b border-slate-600 pb-2">プロデュース統計</h3>
+                <ul class="text-xs md:text-sm space-y-4 text-slate-300">
+                    <li class="flex justify-between items-center bg-slate-900 p-3 rounded border border-slate-700">
+                        <span class="text-slate-400">総獲得資金:</span> 
+                        <span id="stat-total-money" class="font-bold text-pink-400 text-lg">¥0</span>
+                    </li>
+                    <li class="flex justify-between items-center bg-slate-900 p-3 rounded border border-slate-700">
+                        <span class="text-slate-400">グッズ累計販売数:</span> 
+                        <span id="stat-total-goods" class="font-bold text-indigo-300 text-lg">0</span>
+                    </li>
+                    <li class="flex justify-between items-center bg-slate-900 p-3 rounded border border-slate-700">
+                        <span class="text-slate-400">フィーバー発動回数:</span> 
+                        <span id="stat-total-fever" class="font-bold text-yellow-300 text-lg">0</span>
+                    </li>
+                    <li class="flex justify-between items-center bg-slate-900 p-3 rounded border border-slate-700">
+                        <span class="text-slate-400">アイテム獲得数:</span> 
+                        <span id="stat-total-drop" class="font-bold text-green-300 text-lg">0</span>
+                    </li>
+                    <li class="flex justify-between items-center bg-slate-900 p-3 rounded border border-slate-700">
+                        <span class="text-slate-400">アイテム使用数:</span> 
+                        <span id="stat-total-use" class="font-bold text-orange-300 text-lg">0</span>
+                    </li>
+                </ul>
+            </div>
+            
+            <!-- Message Box (Talk) -->
+            <div id="message-box" class="absolute bottom-0 left-0 w-full p-4 bg-slate-800 border-t border-slate-600 transform translate-y-full transition-transform duration-300 shadow-[0_-10px_20px_-5px_rgba(0,0,0,0.5)] z-20">
+                <div class="flex items-start">
+                    <div id="message-icon" class="w-12 h-12 md:w-14 md:h-14 rounded-full bg-slate-900 flex items-center justify-center p-2 mr-3 shrink-0 shadow-sm border border-slate-600">
+                        <!-- SVG injected here -->
+                    </div>
+                    <div class="flex-1">
+                        <p id="message-name" class="font-bold text-white text-sm md:text-base mb-1">名前</p>
+                        <p id="message-text" class="text-slate-200 text-xs md:text-sm bg-slate-700 p-3 rounded-lg rounded-tl-none shadow-sm relative border border-slate-600">
+                            メッセージ内容
+                        </p>
+                    </div>
+                </div>
+                <button onclick="closeMessage()" class="absolute top-2 right-2 text-slate-400 hover:text-red-500 transition-colors bg-slate-900 rounded-full p-1">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
+                </button>
+            </div>
+        </aside>
+    </div>
+
+<div id="toast" role="status"></div><script src="game.js"></script><script src="enhancements.js"></script></body></html>
